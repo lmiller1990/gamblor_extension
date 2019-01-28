@@ -18,6 +18,7 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
 
   componentDidMount(): void {
     Promise.all([
+      this.props.fetchLeagues(),
       this.props.fetchGames(new Date(), new Date(3000, 1, 1)),
       this.props.fetchTeams()
     ]).then(() => {

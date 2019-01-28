@@ -4,7 +4,6 @@ import {
   REQUEST_GAMES,
   REQUEST_UPDATE_GAME,
   SUCCESS_UPDATE_GAME
-
 } from './types'
 
 const defaultState = {
