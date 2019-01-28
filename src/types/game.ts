@@ -11,10 +11,6 @@ export interface IGame {
   blueSideTeamId: number
   firstBaronTeamId?: number
   firstDragonTeamId?: number
-  firstTurretPlayerId?: number
-  firstDragonPlayerId?: number
-  firstBaronPlayerId?: number
-  firstBloodPlayerId?: number
   firstTurretType?: number
   leagueId?: number
   splitId?: number

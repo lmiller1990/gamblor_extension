@@ -3,10 +3,14 @@ import {
 } from './reducers'
 
 import {
-  fetchGames
+  fetchGames,
+  editGame,
+  updateGame
 } from './actions'
 
 export {
   games,
-  fetchGames
+  fetchGames,
+  editGame,
+  updateGame
 }

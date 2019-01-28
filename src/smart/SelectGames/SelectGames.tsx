@@ -33,7 +33,8 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
     const {
       gameIds,
       allGames,
-      allTeams 
+      allTeams,
+      editGame
     } = this.props
 
     return gameIds.map(id => {
@@ -48,7 +49,7 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
           redTeam={redTeam.name}
           blueTeam={blueTeam.name}
           date={game.date}
-          editGame={() => {}}
+          editGame={editGame}
         />
       )
     })

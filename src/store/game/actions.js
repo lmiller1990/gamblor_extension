@@ -2,7 +2,10 @@ import axios from 'axios'
 
 import {
   REQUEST_GAMES,
-  RECEIVE_GAMES
+  RECEIVE_GAMES,
+  EDIT_GAME,
+  REQUEST_UPDATE_GAME,
+  SUCCESS_UPDATE_GAME
 } from './types'
 
 const requestGames = (payload) => ({
@@ -15,11 +18,32 @@ const receiveGames = (payload) => ({
   payload
 })
 
+const requestUpdateGame = payload => ({
+  type: REQUEST_UPDATE_GAME,
+  payload
+})
+
+const successUpdateGame = payload => ({
+  type: SUCCESS_UPDATE_GAME,
+  payload
+})
+
+const updateGame = (payload) => {
+  return (dispatch) => {
+    dispatch(requestUpdateGame(payload))
+
+    return axios.put(`${process.env.REACT_APP_API_ENDPOINT}/games/${payload.id}`, payload)
+      .then(response => {
+        dispatch(successUpdateGame(response.data))
+      })
+  }
+}
+
 const fetchGames = (payload) => {
   return (dispatch) => {
     dispatch(requestGames(payload))
 
-    return axios.get('http://localhost:3000/api/v1/games', {
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/games`, {
       params: {
         start: payload.start,
         end: payload.end
@@ -29,6 +53,13 @@ const fetchGames = (payload) => {
   }
 }
 
+const editGame = (payload) => ({
+  type: EDIT_GAME,
+  payload
+})
+
 export {
-  fetchGames
+  fetchGames,
+  editGame,
+  updateGame
 }
