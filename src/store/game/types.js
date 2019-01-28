@@ -1,0 +1,7 @@
+const RECEIVE_GAMES = 'app/games/RECEIVE_GAMES'
+const REQUEST_GAMES = 'app/games/REQUEST_GAMES'
+
+export {
+  RECEIVE_GAMES,
+  REQUEST_GAMES
+}
