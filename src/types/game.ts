@@ -26,6 +26,6 @@ export interface IGame {
   blueSideTeamWinOdds?: number
   blueSideWinOdds?: number
   redSideWinOdds?: number
-  gameNumber?: number
+  gameNumber: number
   matchUuid?: string
 }

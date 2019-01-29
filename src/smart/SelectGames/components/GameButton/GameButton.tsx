@@ -5,6 +5,7 @@ interface IProps {
   gameId: number
   redTeam: string
   blueTeam: string
+  gameNumber: number
   date: Date
   editGame: (id: number) => void
 }
@@ -13,9 +14,9 @@ class GameButton extends React.Component<IProps> {
   public render(): JSX.Element {
     const {
       gameId,
+      gameNumber,
       redTeam,
       blueTeam,
-      date,
       editGame
     } = this.props
 
@@ -24,7 +25,7 @@ class GameButton extends React.Component<IProps> {
         <button
           onClick={() => editGame(gameId)}
         >
-          {blueTeam} vs {redTeam}
+          {blueTeam} vs {redTeam} (G{gameNumber})
         </button>
       </div>
     )

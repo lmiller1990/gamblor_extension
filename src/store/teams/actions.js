@@ -19,7 +19,7 @@ const fetchTeams = (payload) => {
   return (dispatch) => {
     dispatch(requestTeams(payload))
 
-    return axios.get('http://localhost:3000/api/v1/teams')
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/teams`)
       .then(response => dispatch(receiveTeams(response.data)))
   }
 }

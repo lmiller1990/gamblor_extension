@@ -46,6 +46,7 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
         <GameButton
           key={id}
           gameId={id}
+          gameNumber={game.gameNumber}
           redTeam={redTeam.name}
           blueTeam={blueTeam.name}
           date={game.date}
