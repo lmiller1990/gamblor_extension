@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { IStateProps, IDispatchProps } from './SelectGamesContainer'
 import { GameButton } from './components/GameButton'
+import { SelectLeagueContainer } from './components/SelectLeague';
 
 interface IState {
   loaded: boolean
@@ -26,19 +27,32 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
     })
   }
 
+  private get gameIdsByFilteredByLeague(): number[] {
+    const {
+      gameIds,
+      allGames,
+      currentLeague
+    } = this.props
+
+    if (!currentLeague) {
+      return gameIds
+    }
+
+    return gameIds.filter(id => allGames[id].leagueId === currentLeague.id)
+  }
+
   private get games(): JSX.Element[] | null {
     if (!this.state.loaded) {
       return null
     }
 
     const {
-      gameIds,
       allGames,
       allTeams,
       editGame
     } = this.props
 
-    return gameIds.map(id => {
+    return this.gameIdsByFilteredByLeague.map(id => {
       const game = allGames[id]
       const redTeam = allTeams[game.redSideTeamId]
       const blueTeam = allTeams[game.blueSideTeamId]
@@ -59,6 +73,7 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
   public render(): JSX.Element {
     return (
       <React.Fragment>
+        <SelectLeagueContainer />
         {this.games}
       </React.Fragment>
     )

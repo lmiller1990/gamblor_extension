@@ -11,6 +11,11 @@ const receiveLeagues = (payload) => ({
   payload
 })
 
+const setCurrentLeagueId = (payload) => ({
+  type: types.SET_CURRENT_LEAGUE_ID,
+  payload
+})
+
 const fetchLeagues = () => {
   return async (dispatch) => {
     dispatch(requestLeagues())
@@ -21,5 +26,6 @@ const fetchLeagues = () => {
 }
 
 export {
-  fetchLeagues
+  fetchLeagues,
+  setCurrentLeagueId
 }

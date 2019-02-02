@@ -3,7 +3,8 @@ import * as types from './types'
 const defaultState = {
   isFetching: false,
   ids: [],
-  all: {}
+  all: {},
+  selectedLeagueId: null
 }
 
 const leagues = (state = defaultState, action) => {
@@ -26,6 +27,12 @@ const leagues = (state = defaultState, action) => {
         all,
         ids,
         isFetching: false
+      }
+
+    case types.SET_CURRENT_LEAGUE_ID:
+      return {
+        ...state,
+        selectedLeagueId: action.payload.id
       }
 
     default: 
