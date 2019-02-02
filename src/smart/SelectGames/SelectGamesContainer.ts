@@ -6,7 +6,7 @@ import { ITeam } from '../../types/team'
 import { ILeague } from '../../types/league'
 import { SelectGames } from './SelectGames'
 import { fetchGames } from '../../store/game'
-import { editGame } from '../../store/game/actions'
+import { editGame, switchSides } from '../../store/game/actions'
 import { fetchLeagues } from '../../store/leagues'
 import { selectCurrentLeague } from '../../store/leagues/selectors'
 import { fetchTeams } from '../../store/teams'
@@ -28,12 +28,11 @@ export interface IDispatchProps {
   fetchTeams: () => void
   editGame: (gameId: number) => void
   fetchLeagues: () => void
+  switchSides: (gameId: number) => void
 }
 
 const mapStateToProps = (state: any): IStateProps => {
   const currentLeague = selectCurrentLeague(state)
-
-  window.console.log(currentLeague)
 
   return {
     currentLeague,
@@ -50,7 +49,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>): IDispatchProps => {
     },
     fetchTeams: () => dispatch(fetchTeams()),
     editGame: (gameId: number) => dispatch(editGame({ gameId })),
-    fetchLeagues: () => dispatch(fetchLeagues())
+    fetchLeagues: () => dispatch(fetchLeagues()),
+    switchSides: (gameId: number) => dispatch(switchSides({ gameId }))
   }
 }
 

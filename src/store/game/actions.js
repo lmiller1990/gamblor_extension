@@ -48,6 +48,16 @@ const fetchGames = (payload) => {
   }
 }
 
+const switchSides = (payload) => {
+  return (dispatch) => {
+    // show loading, etc...
+    return axios.put(`${process.env.REACT_APP_API_ENDPOINT}/switch_sides/${payload.gameId}`)
+      .then(response => {
+        dispatch(successUpdateGame(response.data))
+      })
+  }
+}
+
 const editGame = (payload) => ({
   type: EDIT_GAME,
   payload
@@ -56,5 +66,6 @@ const editGame = (payload) => ({
 export {
   fetchGames,
   editGame,
-  updateGame
+  updateGame,
+  switchSides
 }

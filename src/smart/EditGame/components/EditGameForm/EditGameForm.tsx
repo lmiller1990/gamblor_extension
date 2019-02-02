@@ -42,6 +42,19 @@ class EditGameForm extends React.PureComponent<IProps> {
     this.props.updateGame(updatedGame)
   }
 
+  private getTeamName(id: number | undefined): string {
+    const {
+      blueTeam,
+      redTeam
+    } = this.props
+
+    if (!id) {
+      return ''
+    }
+
+    return blueTeam.id === id ? blueTeam.name : redTeam.name
+  }
+
   public render(): JSX.Element {
     const {
       blueTeam,
@@ -53,18 +66,18 @@ class EditGameForm extends React.PureComponent<IProps> {
 
     return (
       <React.Fragment>
-        {this.props.game.firstBloodTeamId}
-        {this.props.game.firstTurretTeamId}
-        {this.props.game.firstDragonTeamId}
-        {this.props.game.firstBaronTeamId}
-        {this.props.game.winnerId}
-        {this.props.game.loserId}
+        {this.getTeamName(this.props.game.firstBloodTeamId)}
+        {this.getTeamName(this.props.game.firstTurretTeamId)}
+        {this.getTeamName(this.props.game.firstDragonTeamId)}
+        {this.getTeamName(this.props.game.firstBaronTeamId)}
+
         <ChooseFirstMarket
           blueTeam={blueTeam}
           redTeam={redTeam}
           updateField={this.updateFirstTeamId}
           label='First Blood'
           market='firstBloodTeamId'
+          successfulTeamName={}
         />
 
         <ChooseFirstMarket

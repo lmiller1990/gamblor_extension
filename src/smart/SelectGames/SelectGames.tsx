@@ -2,7 +2,8 @@ import * as React from 'react'
 
 import { IStateProps, IDispatchProps } from './SelectGamesContainer'
 import { GameButton } from './components/GameButton'
-import { SelectLeagueContainer } from './components/SelectLeague';
+import { SelectLeagueContainer } from './components/SelectLeague'
+import { Btn } from '../../dumb/Btn'
 
 interface IState {
   loaded: boolean
@@ -49,7 +50,8 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
     const {
       allGames,
       allTeams,
-      editGame
+      editGame,
+      switchSides
     } = this.props
 
     return this.gameIdsByFilteredByLeague.map(id => {
@@ -58,15 +60,20 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
       const blueTeam = allTeams[game.blueSideTeamId]
 
       return (
-        <GameButton
-          key={id}
-          gameId={id}
-          gameNumber={game.gameNumber}
-          redTeam={redTeam.name}
-          blueTeam={blueTeam.name}
-          date={game.date}
-          editGame={editGame}
-        />
+        <div key={id}>
+          <GameButton
+            gameId={id}
+            gameNumber={game.gameNumber}
+            redTeam={redTeam.name}
+            blueTeam={blueTeam.name}
+            date={game.date}
+            editGame={editGame}
+          />
+          <Btn
+            label='⇄'
+            onClick={() => switchSides(id)}
+          />
+        </div>
       )
     })
   }
