@@ -10,6 +10,7 @@ interface IProps {
   updateField: (teamId: number, market: TMarket) => void
   label: string
   market: TMarket
+  successfulTeamName: string
 }
 
 class ChooseFirstMarket extends React.PureComponent<IProps> {
@@ -19,7 +20,8 @@ class ChooseFirstMarket extends React.PureComponent<IProps> {
       redTeam,
       updateField,
       label,
-      market
+      market,
+      successfulTeamName
     } = this.props
 
     return (
@@ -35,6 +37,7 @@ class ChooseFirstMarket extends React.PureComponent<IProps> {
           label={redTeam.name}
           onClick={() => updateField(redTeam.id, market)}
         />
+        {successfulTeamName}
       </div>
     )
   }

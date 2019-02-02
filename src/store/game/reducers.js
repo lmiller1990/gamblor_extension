@@ -56,8 +56,6 @@ const games = (state = defaultState, action) => {
         }
       }
 
-
-
     default:
       return state
   }

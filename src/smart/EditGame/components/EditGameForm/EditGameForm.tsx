@@ -42,10 +42,24 @@ class EditGameForm extends React.PureComponent<IProps> {
     this.props.updateGame(updatedGame)
   }
 
+  private getTeamName(id: number | undefined): string {
+    const {
+      blueTeam,
+      redTeam
+    } = this.props
+
+    if (!id) {
+      return ''
+    }
+
+    return blueTeam.id === id ? blueTeam.name : redTeam.name
+  }
+
   public render(): JSX.Element {
     const {
       blueTeam,
       redTeam,
+      game
     } = this.props
 
     this.updateFirstTeamId = this.updateFirstTeamId.bind(this)
@@ -53,18 +67,13 @@ class EditGameForm extends React.PureComponent<IProps> {
 
     return (
       <React.Fragment>
-        {this.props.game.firstBloodTeamId}
-        {this.props.game.firstTurretTeamId}
-        {this.props.game.firstDragonTeamId}
-        {this.props.game.firstBaronTeamId}
-        {this.props.game.winnerId}
-        {this.props.game.loserId}
         <ChooseFirstMarket
           blueTeam={blueTeam}
           redTeam={redTeam}
           updateField={this.updateFirstTeamId}
           label='First Blood'
           market='firstBloodTeamId'
+          successfulTeamName={this.getTeamName(game.firstBloodTeamId)}
         />
 
         <ChooseFirstMarket
@@ -73,6 +82,7 @@ class EditGameForm extends React.PureComponent<IProps> {
           updateField={this.updateFirstTeamId}
           label='First Turret'
           market='firstTurretTeamId'
+          successfulTeamName={this.getTeamName(game.firstTurretTeamId)}
         />
 
         <ChooseFirstMarket
@@ -81,6 +91,7 @@ class EditGameForm extends React.PureComponent<IProps> {
           updateField={this.updateFirstTeamId}
           label='First Dragon'
           market='firstDragonTeamId'
+          successfulTeamName={this.getTeamName(game.firstDragonTeamId)}
         />
 
         <ChooseFirstMarket
@@ -89,6 +100,7 @@ class EditGameForm extends React.PureComponent<IProps> {
           updateField={this.updateFirstTeamId}
           label='First Baron'
           market='firstBaronTeamId'
+          successfulTeamName={this.getTeamName(game.firstBaronTeamId)}
         />
 
         <ChooseWinner

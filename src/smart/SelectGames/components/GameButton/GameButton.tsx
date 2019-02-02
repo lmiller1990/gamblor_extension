@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { IGame } from '../../../../types/game'
 
 interface IProps {
   gameId: number
@@ -21,13 +20,11 @@ class GameButton extends React.Component<IProps> {
     } = this.props
 
     return (
-      <div>
-        <button
-          onClick={() => editGame(gameId)}
-        >
-          {blueTeam} vs {redTeam} (G{gameNumber})
+      <button
+        onClick={() => editGame(gameId)}
+      >
+        {blueTeam} vs {redTeam} (G{gameNumber})
         </button>
-      </div>
     )
   }
 }
