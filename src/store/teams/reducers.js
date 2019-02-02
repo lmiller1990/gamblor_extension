@@ -6,7 +6,8 @@ import {
 const defaultState = {
   isFetching: false,
   ids: [],
-  all: {}
+  all: {},
+  initialLoadComplete: false
 }
 
 const teams = (state = defaultState, action) => {
@@ -22,6 +23,7 @@ const teams = (state = defaultState, action) => {
       action.payload.map(team => all[team.id] = team)
       return {
         ...state,
+        initialLoadComplete: true,
         isFetching: false,
         ids: action.payload.map(team => team.id),
         all

@@ -43,14 +43,7 @@ const fetchGames = (payload) => {
   return (dispatch) => {
     dispatch(requestGames(payload))
 
-    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/uncollected_games`, {
-      params: {
-        // start: payload.start,
-        // end: payload.end
-        // upcoming: 10000,
-        // recentlyPlayed: 0
-      }
-    })
+    return axios.get(`${process.env.REACT_APP_API_ENDPOINT}/uncollected_games`)
       .then(response => dispatch(receiveGames(response.data)))
   }
 }

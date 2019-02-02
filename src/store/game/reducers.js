@@ -4,11 +4,11 @@ import {
   REQUEST_GAMES,
   REQUEST_UPDATE_GAME,
   SUCCESS_UPDATE_GAME
-
 } from './types'
 
 const defaultState = {
   isFetching: false,
+  initialLoadComplete: false,
   isUpdating: false,
   ids: [],
   all: {},
@@ -28,6 +28,7 @@ const games = (state = defaultState, action) => {
       action.payload.map(game => all[game.id] = game)
       return {
         ...state,
+        initialLoadComplete: true,
         isFetching: false,
         ids: action.payload.map(game => game.id),
         all
