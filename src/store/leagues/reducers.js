@@ -4,7 +4,8 @@ const defaultState = {
   isFetching: false,
   ids: [],
   all: {},
-  selectedLeagueId: null
+  selectedLeagueId: null,
+  initialLoadComplete: false
 }
 
 const leagues = (state = defaultState, action) => {
@@ -26,6 +27,7 @@ const leagues = (state = defaultState, action) => {
         ...state,
         all,
         ids,
+        initialLoadComplete: true,
         isFetching: false
       }
 
