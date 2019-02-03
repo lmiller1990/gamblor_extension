@@ -82,6 +82,7 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
       editGame
     } = this.props
 
+    localStorage.setItem('currentGameId', id.toString())
     editGame(id)
   }
 
