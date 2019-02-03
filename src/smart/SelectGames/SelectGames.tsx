@@ -50,7 +50,6 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
     const {
       allGames,
       allTeams,
-      editGame,
       switchSides
     } = this.props
 
@@ -67,7 +66,7 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
             redTeam={redTeam.name}
             blueTeam={blueTeam.name}
             date={game.date}
-            editGame={editGame}
+            editGame={id => this.setEditingGameId(id)}
           />
           <Btn
             label='⇄'
@@ -76,6 +75,26 @@ class SelectGames extends React.PureComponent<IStateProps & IDispatchProps, ISta
         </div>
       )
     })
+  }
+
+  private setEditingGameId(id: number): void {
+    const {
+      editGame
+    } = this.props
+
+    editGame(id)
+  }
+
+  public componentWillMount(): void {
+    const {
+      editGame
+    } = this.props
+
+    const currentGameId = window.localStorage.getItem('currentGameId')
+
+    if (currentGameId) {
+      editGame(parseInt(currentGameId, 10))      
+    }
   }
 
   public render(): JSX.Element {
