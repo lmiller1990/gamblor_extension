@@ -24,13 +24,20 @@ const games = (state = defaultState, action) => {
       }
 
     case RECEIVE_GAMES:
-      const all = {}
+      const all = {...state.all}
+      const ids = state.ids
+      for (const game of action.payload) {
+        if (!ids.includes(game.id)) {
+          ids.push(game.id)
+        }
+        all[game.id] = game
+      }
       action.payload.map(game => all[game.id] = game)
       return {
         ...state,
         initialLoadComplete: true,
         isFetching: false,
-        ids: action.payload.map(game => game.id),
+        ids,
         all
       }
 

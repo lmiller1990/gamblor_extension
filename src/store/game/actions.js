@@ -28,6 +28,16 @@ const successUpdateGame = payload => ({
   payload
 })
 
+const duplicateGame = payload => {
+  return dispatch => {
+    return axios.post(`${process.env.REACT_APP_API_ENDPOINT}/games/${payload}/duplicate`)
+      .then(response => {
+        console.log('Duplicated')
+        dispatch(receiveGames([ response.data ]))
+      })
+  }
+}
+
 const updateGame = (payload) => {
   return (dispatch) => {
     dispatch(requestUpdateGame(payload))
@@ -67,5 +77,6 @@ export {
   fetchGames,
   editGame,
   updateGame,
-  switchSides
+  switchSides,
+  duplicateGame
 }
