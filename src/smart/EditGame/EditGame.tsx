@@ -9,7 +9,8 @@ class EditGame extends React.PureComponent<IEditGameStateProps & IEditGameDispat
       game,
       redTeam,
       blueTeam,
-      updateGame
+      updateGame,
+      duplicate
     } = this.props
 
     if (! (game && redTeam && blueTeam)) {
@@ -22,6 +23,7 @@ class EditGame extends React.PureComponent<IEditGameStateProps & IEditGameDispat
         redTeam={redTeam}
         blueTeam={blueTeam}
         updateGame={updateGame}
+        duplicate={duplicate}
       />
     )
   }
@@ -29,6 +31,7 @@ class EditGame extends React.PureComponent<IEditGameStateProps & IEditGameDispat
   public render(): JSX.Element {
     return (
       <React.Fragment>
+        <hr />
         {this.editingGame}
       </React.Fragment>
     )

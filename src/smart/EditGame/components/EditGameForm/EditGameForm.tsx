@@ -5,16 +5,25 @@ import { ITeam } from '../../../../types/team'
 import { TMarket } from '../../../../types/firstMarket'
 import { ChooseFirstMarket } from './ChooseFirstMarket'
 import { ChooseWinner } from './ChooseWinner'
+import { Btn } from '../../../../dumb/Btn'
 
 interface IProps {
   game: IGame
   blueTeam: ITeam
   redTeam: ITeam
   updateGame: (game: IGame) => void
-
+  duplicate: (id: number) => void
 }
 
 class EditGameForm extends React.PureComponent<IProps> {
+  constructor(props: IProps) {
+    super(props)
+
+    this.updateFirstTeamId = this.updateFirstTeamId.bind(this)
+    this.updateResult = this.updateResult.bind(this)
+    this.duplicate = this.duplicate.bind(this)
+  }
+
   updateFirstTeamId(teamId: number, market: TMarket): void {
     const {
       game
@@ -26,6 +35,10 @@ class EditGameForm extends React.PureComponent<IProps> {
     }
 
     this.props.updateGame(updatedGame)
+  }
+
+  duplicate() {
+    this.props.duplicate(this.props.game.id)
   }
 
   updateResult(winnerId: number, loserId: number): void {
@@ -62,11 +75,12 @@ class EditGameForm extends React.PureComponent<IProps> {
       game
     } = this.props
 
-    this.updateFirstTeamId = this.updateFirstTeamId.bind(this)
-    this.updateResult = this.updateResult.bind(this)
-
     return (
       <React.Fragment>
+        <Btn
+          label='Duplicate'
+          onClick={this.duplicate}
+        />
         <ChooseFirstMarket
           blueTeam={blueTeam}
           redTeam={redTeam}

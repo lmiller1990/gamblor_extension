@@ -5,6 +5,7 @@ import { IGame } from '../../types/game'
 import { ITeam } from '../../types/team'
 import { getEditingGame } from '../../store/game/selectors'
 import { updateGame } from '../../store/game'
+import { duplicateGame } from '../../store/game/actions'
 import { EditGame } from './EditGame'
 
 export interface IEditGameStateProps {
@@ -15,6 +16,7 @@ export interface IEditGameStateProps {
 
 export interface IEditGameDispatchProps {
   updateGame: (game: IGame) => void
+  duplicate: (id: number) => void
 }
 
 const mapStateToProps = (state: any): IEditGameStateProps => {
@@ -33,7 +35,8 @@ const mapStateToProps = (state: any): IEditGameStateProps => {
 
 const mapPropsToDispatch = (dispatch: Dispatch<any>): IEditGameDispatchProps => {
   return {
-    updateGame: (game: IGame) => dispatch(updateGame(game))
+    updateGame: (game: IGame) => dispatch(updateGame(game)),
+    duplicate: (id: number) => dispatch(duplicateGame(id))
   }
 }
 const EditGameContainer = connect<IEditGameStateProps, IEditGameDispatchProps>
